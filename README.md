@@ -1,22 +1,6 @@
-A library for Dart developers.
+# Ecleus4Dart
+## A flexible database version management package concept
 
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+For example, see [./example/ecleus4dart_example.dart](./example/ecleus4dart_example.dart).
 
-## Usage
-
-A simple usage example:
-
-```dart
-import 'package:ecleus4dart/ecleus4dart.dart';
-
-main() {
-  var awesome = new Awesome();
-}
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+For pratical example, see [PgEcleus4Dart](https://github.com/dfeprado/PgEcleus4Dart)

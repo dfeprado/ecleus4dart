@@ -2,16 +2,21 @@ import 'ecleus_version_info.dart';
 import 'ecleus_version_control.dart';
 import 'ecleus_updater.dart';
 
+/// This exception type is throwed when a database version is greater than Ecleus latest version
+/// An application should not run in this scenario.
 class EcleusIncompatibleVersionException implements Exception {
   final String message;
 
   EcleusIncompatibleVersionException(this.message);
 }
 
+/// This class is the coordinator of the database management.
 class Ecleus {
   final EcleusVersionControl _versionControl;
   final EcleusUpdater _latestVersion;
 
+  /// Instances a new Ecleus object that will operate with a specific `EcleusVersionControl`
+  /// and `EcleusUpdater` that points to the latest database version.
   Ecleus(this._versionControl, this._latestVersion);
 
   List<EcleusUpdater> _getAllUpdaters() {
@@ -41,6 +46,14 @@ class Ecleus {
     return List<EcleusUpdater>.from(updateList.reversed);
   }
 
+  /// Run Ecleus algorithm
+  /// 
+  /// If the database version is greater than the Ecleus latest known version this method
+  /// will throw an EcleusIncompatibleVersionException with proper explanation.
+  /// 
+  /// If database's version is equal to the latest known version, but differs in release:
+  ///   - If database release is greater, Ecleus does nothing and allows application to continue
+  ///   - If database release is lesser, Ecleus apply the proper updates
   void run() {
     // Lock the database to perform analyze.
     _versionControl.lockDatabase();
